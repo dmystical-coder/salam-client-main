@@ -27,32 +27,27 @@
     <button onclick="login()">Login</button>
     <button onclick="logout()">Log Out</button>
 
-
     <script src="https://ajs.radius.africa/authx.js"></script>
     <script type="text/javascript">
-        function loginHandler(session, message) {
-            console.log('logged in ', session, message)
-            console.log('Session = ', authx.getSession())
-        }
+      function loginHandler (session, message) {
+          console.log('logged in ', session, message)
+          console.log('Session = ', authx.getSession())
+      }
+      const authx = AuthX("Plg1dzXmruuwRedTSnmP6yFMPJX5jqNRDW4NksIR", {
+          redirect_uri: "https://dmystical-coder.github.io/salam-client-main/welcome.html",
+          locale: 'en',
+          isSpa: true,
+          onComplete: loginHandler,
+          onError: function (error) {
+              alert(error.message)
+          }
+      })
 
-        const authx = AuthX("Plg1dzXmruuwRedTSnmP6yFMPJX5jqNRDW4NksIR", {
-            redirect_uri: "https://dmystical-coder.github.io/404.html",
-            locale: 'en',
-            isSpa: true,
-            onComplete: loginHandler,
-            onError: function (error) {
-                alert(error.message)
-            }
-        })
-
-        function login() {
-            authx.initiateSession()
-        }
-
-        function logout() {
-            authx.logout()
-        }
+      function login() {
+          authx.initiateSession()
+      }
     </script>
+    
 </body>
 
 </html>
