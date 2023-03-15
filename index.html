@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client</title>
+    <style>
+        button {
+            cursor: pointer;
+            background-color: #4CAF50;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button onclick="login()">Login</button>
+    <button onclick="logout()">Log Out</button>
+
+
+    <script src="https://ajs.radius.africa/authx.js"></script>
+    <script type="text/javascript">
+        function loginHandler(session, message) {
+            console.log('logged in ', session, message)
+            console.log('Session = ', authx.getSession())
+        }
+
+        const authx = AuthX("Plg1dzXmruuwRedTSnmP6yFMPJX5jqNRDW4NksIR", {
+            redirect_uri: "https://dmystical-coder.github.io/404.html",
+            locale: 'en',
+            isSpa: true,
+            onComplete: loginHandler,
+            onError: function (error) {
+                alert(error.message)
+            }
+        })
+
+        function login() {
+            authx.initiateSession()
+        }
+
+        function logout() {
+            authx.logout()
+        }
+    </script>
+</body>
+
+</html>
